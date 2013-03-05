@@ -23,19 +23,19 @@ public class DatabaseServlet extends HttpServlet{
 	
 	private void print_form(PrintWriter outputStream) {
 		// TODO Auto-generated method stub
-		outputStream.println("<br><br><b>DATABASE EXAMPLE</b><br>====================<br>");
+		outputStream.println("<br>====================<br><b>DATABASE EXAMPLE</b><br>====================<br><br>");
 		outputStream.println("<table border=\"1\">");
 		outputStream.println("<tr><td>");
 		outputStream.println("<p>Insert new entry</p>");
 		outputStream.println("<form action=\"/insertData\" method=\"GET\">");
 		outputStream.println("Enter your name: <input type=\"text\" name=\"pname\"><br>");
-		outputStream.println("Enter your age: <input type=\"text\" name=\"page\"><br>");
+		outputStream.println("Enter your age : <input type=\"text\" name=\"page\"><br>");
 		outputStream.println("<input type=\"submit\" value=\"Enter\">");
 		outputStream.println("</form>");
 		outputStream.println("</td><td>");
-		outputStream.println("<p>Get Age</p>");
+		outputStream.println("<p>Get All Entries</p>");
 		outputStream.println("<form action=\"/retrieveData\" method=\"GET\">");
-		outputStream.println("Search name: <input hidden=\"true\" type=\"text\" name=\"gname\" value=\"xxx\"><br>");
+		outputStream.println("<input hidden=\"true\" type=\"text\" name=\"gname\" value=\"xxx\"><br>");
 		outputStream.println("<input type=\"submit\" value=\"Get\">");
 		outputStream.println("</form>");
 		outputStream.println("</td></tr>");
