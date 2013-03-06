@@ -1,0 +1,52 @@
+8
+
+dir
+213
+svn://66.93.61.207/BeanFactory/src/org/mybeans/dao
+svn://66.93.61.207
+
+
+
+2008-06-19T19:27:52.348051Z
+195
+zhlmmc
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+1fb05815-6dfd-414e-80f2-546af6f4934c
+
+GenericDAO.java
+file
+231
+
+
+
+2008-08-05T18:23:52.078125Z
+3fe6219c0314383f200a99b2b745e467
+2008-08-05T18:17:35.496366Z
+231
+jle
+
+DAOException.java
+file
+
+
+
+
+2008-02-14T16:18:37.468750Z
+eea5692a952e8cae75f8879d6a63479a
+2008-01-24T17:02:23.973417Z
+96
+jle
+
