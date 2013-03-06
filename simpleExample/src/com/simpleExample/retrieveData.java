@@ -17,7 +17,6 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
-import com.sun.tools.javac.util.List;
 
 public class retrieveData extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
