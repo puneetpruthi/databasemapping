@@ -1,13 +1,28 @@
 package databeans;
 
 public class UserInfo {
-	private String name;
+	private String name;	
 	private String email;
+	private String password;
 	
-	public UserInfo(String name, String email) {
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public UserInfo(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.password = password;
 	}
 	/**
 	 * @return the name
@@ -32,5 +47,9 @@ public class UserInfo {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String toString(){
+		return ("Username: " + name + " | Email : " + email + " | Password : " + password);
 	}
 }
