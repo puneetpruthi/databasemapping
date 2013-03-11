@@ -60,41 +60,7 @@ public class AdvancedbeansServlet extends HttpServlet {
 		}
 		else{
 			if (req.getParameter("gname") != null){
-				
-//				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-//				Key userKey = KeyFactory.createKey("simpleUser", "tempDB");
-//				Query query = new Query("Userlist", userKey);
-//				java.util.List<Entity> users = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(500));
-//				if(users.isEmpty())				
-//				{
-//					outputStream.println("<span style=\"color:#ff0000\">Could not find name</span>");	
-//				}
-//				else
-//				{
-//					outputStream.println("<b>Data base entries:</b>");
-//			        for (Entity iter : users) {
-//			        	outputStream.println("<br><span style=\"color:#0000FF\">" + iter.getProperty("name") + " of age " + iter.getProperty("age")  + "</span>");
-//			        }
-//				}
-//
-//				retrieveData(req, outputStream);
 				outputStream.println("<span style=\"color:#ff0000\">You have asked to retrieve data for " + req.getParameter("gname") + "</span><br>");
-				    // Create the database
-//				    String statement = "CREATE database ex1";
-//				    PreparedStatement prepStmt = conn.prepareStatement(statement);
-//				    if(prepStmt.executeUpdate() == 1)
-//						outputStream.println("<span style=\"color:#0000ff\">Statement 1 ran</span><br>");
-//				    else
-//				    	outputStream.println("<span style=\"color:#ff0000\">Statement 1 failed</span><br>");
-//				    
-				    
-				    // Use the database
-//				    String statement ="USE DATABASE ex1";
-//				    PreparedStatement prepStmt = conn.prepareStatement(statement);
-//				    if(prepStmt.executeUpdate() == 1)
-//						outputStream.println("<span style=\"color:#0000ff\">Statement 2 ran</span><br>");
-//				    else
-//				    	outputStream.println("<span style=\"color:#ff0000\">Statement 2 failed</span><br>");
 			    try {
 				    String statement;
 				    PreparedStatement prepStmt;
@@ -113,11 +79,6 @@ public class AdvancedbeansServlet extends HttpServlet {
 				    	outputStream.println(thisUser.toString() + "<br>");
 				    }
 				    outputStream.println("Results ended <br>");
-//				    if(prepStmt.executeUpdate() == 1)
-//						outputStream.println("<span style=\"color:#0000ff\">Statement 3 ran</span><br>");
-//				    else
-//				    	outputStream.println("<span style=\"color:#ff0000\">Statement 3 failed</span><br>");
-
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					outputStream.println("Exception Caught:" + e.getMessage());
