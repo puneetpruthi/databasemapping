@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
 
+import model.UserInfoDAO;
+
 import org.mybeans.dao.DAOException;
 
 import com.google.appengine.api.rdbms.AppEngineDriver;
@@ -15,7 +17,6 @@ import com.google.cloud.sql.jdbc.Connection;
 import com.google.cloud.sql.jdbc.PreparedStatement;
 import com.google.cloud.sql.jdbc.ResultSet;
 
-import dao.UserInfoDAO;
 
 //import com.google.appengine.api.datastore.DatastoreService;
 //import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -83,9 +84,7 @@ public class AdvancedbeansServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					outputStream.println("Exception Caught:" + e.getMessage());
 				}
-
-
-		}
+			}
 			else if(req.getParameter("pname") != null){				
 				String newName = (String)req.getParameter("pname");
 				String newEmail = (String)req.getParameter("pemail");

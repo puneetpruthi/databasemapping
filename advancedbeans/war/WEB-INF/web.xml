@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
-		<servlet-name>Advancedbeans</servlet-name>
+		<servlet-name>BasicGoogleSQL</servlet-name>
 		<servlet-class>advancedbeans.AdvancedbeansServlet</servlet-class>
 		<init-param>
 			<param-name> jdbcDriverName         </param-name>
@@ -11,9 +11,25 @@
 			<param-value> jdbc:mysql:///project     </param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>AdvancedGoogleSQL</servlet-name>
+		<servlet-class>controller.Controller</servlet-class>
+		<init-param>
+			<param-name> jdbcDriverName         </param-name>
+			<param-value> com.mysql.jdbc.Driver  </param-value>
+		</init-param>
+		<init-param>
+			<param-name> jdbcURL                </param-name>
+			<param-value> jdbc:google:rdbms://gsqlbeanfactory:googlebeanfactorydb/ex1     </param-value>
+		</init-param>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name>Advancedbeans</servlet-name>
+		<servlet-name>BasicGoogleSQL</servlet-name>
 		<url-pattern>/advancedbeans</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>AdvancedGoogleSQL</servlet-name>
+		<url-pattern>/mvccontroller</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

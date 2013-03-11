@@ -138,7 +138,6 @@ public class ConnectionPool {
 		}
 
 		// Otherwise, make a new connection and return it
-
 		try {
 			Class.forName(jdbcDriverName);
 		} catch (ClassNotFoundException e) {
