@@ -58,7 +58,7 @@ public class GoogleSQLTable<B> extends BeanTable<B> {
 		this.beanClass = beanClass;
         this.tableName = tableName.toLowerCase();
         this.referencedFactories = referencedFactories;
-        
+                
 		try {
 			connectionPool = ConnectionPool.getInstance(jdbcDriver,jdbcURL,user,password);
 		} catch (ConnectionException e) {

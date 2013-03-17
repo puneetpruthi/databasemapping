@@ -1,34 +1,55 @@
 package databeans;
 
 public class UserInfo {
-	private String name;	
 	private String email;
+
+	private String name;	
 	private String password;
+	private int	   userID = -1;
+
+	public UserInfo() {
+		super();
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
 	
+	//		public UserInfo(int id, String name, String email, String password) {
+//		super();
+//		this.userID = id;
+//		this.name = name;
+//		this.email = email;
+//		this.password = password;
+//	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 	/**
 	 * @return the password
 	 */
 	public String getPassword() {
 		return password;
 	}
+	
+	
 	/**
-	 * @param password the password to set
+	 * @return the userID
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public int getUserID() {
+		return userID;
 	}
 	
-	public UserInfo(String name, String email, String password) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
-	/**
-	 * @return the name
+/**
+	 * @param email the email to set
 	 */
-	public String getName() {
-		return name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * @param name the name to set
@@ -37,19 +58,20 @@ public class UserInfo {
 		this.name = name;
 	}
 	/**
-	 * @return the email
+	 * @param password the password to set
 	 */
-	public String getEmail() {
-		return email;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	/**
-	 * @param email the email to set
+	 * @param userID the userID to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 	
+	@Override
 	public String toString(){
-		return ("Username: " + name + " | Email : " + email + " | Password : " + password);
+		return ("< Username: " + name + " | Email : " + email + " | Password : " + password + ">");
 	}
 }

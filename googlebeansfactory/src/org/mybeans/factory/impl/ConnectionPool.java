@@ -4,6 +4,7 @@
  */
 
 package org.mybeans.factory.impl;
+import com.google.appengine.api.rdbms.AppEngineDriver;
 
 /**
  * An implementation of connection pool for JDBC.
@@ -138,10 +139,21 @@ public class ConnectionPool {
 		}
 
 		// Otherwise, make a new connection and return it
-		try {
-			Class.forName(jdbcDriverName);
-		} catch (ClassNotFoundException e) {
-			throw new ConnectionException("Could not load database driver: " + e.toString());
+		if(jdbcURL.contains("google") == true){
+			// this is a jdbc meant for Google SQL. Register the AppEngineJDBC
+			try {
+				DriverManager.registerDriver(new AppEngineDriver());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				throw new ConnectionException("Could not Register Google Driver: " + e.toString());
+			}
+		}
+		else{
+			try {
+				Class.forName(jdbcDriverName);
+			} catch (ClassNotFoundException e) {
+				throw new ConnectionException("Could not load any database driver: " + e.toString());
+			}
 		}
 
 		try {

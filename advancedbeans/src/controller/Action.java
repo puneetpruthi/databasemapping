@@ -6,12 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public abstract class Action {
-    // Returns the name of the action, used to match the request in the hash table
-    public abstract String getName();
-
-    // Returns the name of the jsp used to render the output.
-    public abstract String perform(HttpServletRequest request);
-
     //
     // Class methods to manage dispatching to Actions
     //
@@ -23,16 +17,6 @@ public abstract class Action {
     	}
     }
 
-    public static String perform(String name,HttpServletRequest request) {
-        Action a;
-        synchronized (hash) {
-        	a = hash.get(name);
-        }
-        
-        if (a == null) return null;
-        return a.perform(request);
-    }
-    
     public static boolean isValidAction(String name){
     	Action a;
         synchronized (hash) {
@@ -44,4 +28,20 @@ public abstract class Action {
         else 
         	return true;
     }
+
+    public static String perform(String name,HttpServletRequest request) {
+        Action a;
+        synchronized (hash) {
+        	a = hash.get(name);
+        }
+        
+        if (a == null) return null;
+        return a.perform(request);
+    }
+
+    // Returns the name of the action, used to match the request in the hash table
+    public abstract String getName();
+    
+    // Returns the name of the jsp used to render the output.
+    public abstract String perform(HttpServletRequest request);
 }

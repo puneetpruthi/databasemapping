@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- The HTML 4.01 Transitional DOCTYPE declaration-->
 <!-- above set at the top of the file will set     -->
@@ -14,7 +17,6 @@
 
 <% 
 	HttpSession thisSession = request.getSession();
-	thisSession.removeAttribute("user");
 	String errorMsg = (String)request.getAttribute("errorMsg");
 	String goodMsg = (String)request.getAttribute("goodMsg");
 %>
@@ -33,13 +35,22 @@
 		</form>
 	</td><td>
 		<p>Get All Entries</p>
-		<form action="/DisplayUsers" method="GET">
-			<input hidden="true" type="text" name="gname" value="xxx"><br>
+		<form action="/DisplayUser.do" method="GET">
 			<input type="submit" value="Get">
 		</form>
 	</td></tr>
 	</table>
-	
+
+	        	 <c:choose>  
+	       			<c:when test="${not empty result}">  
+	       				<br><a>Users in database</a>
+	              	  <c:forEach items="${result}" var="item">
+						<a>Name: ${item.name} >>> Email : ${item.email} >>> Pass : ${item.password}</a><br>											
+					  </c:forEach> 
+        			</c:when>  
+	   	  		 </c:choose>  
+				<c:remove var="result"></c:remove> 
+
 <%
 			if(goodMsg != null)
 			{
@@ -49,28 +60,16 @@
 				request.removeAttribute("goodMsg");
 			}
 %>
-
+	
 <%
 			if(errorMsg != null)
 			{
 %>
-					<span style="color:#0000ff"><%=errorMsg%></span><br>
+					<span style="color:#ff0000"><%=errorMsg%></span><br>
 <%	
 				request.removeAttribute("errorMsg");
 			}
-%>		
-		<c:choose>  
-	        <c:when test="${empty result}">  
-	         <p> No User</p> 
-	        </c:when>  
-	        <c:otherwise>  
-	        		<h1>User List</h1>
-	                <c:forEach items="${result}" var="item">
-					 <p> ${item.name} -- ${item.email} -- ${item.password} </p>
-					</c:forEach> 
-	        </c:otherwise>  
-	    </c:choose>  
-	<c:remove var="result"></c:remove> 
+%>
 
   </body>
 </html>

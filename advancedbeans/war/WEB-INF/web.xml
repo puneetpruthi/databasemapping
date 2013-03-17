@@ -3,34 +3,32 @@
 		<servlet-name>BasicGoogleSQL</servlet-name>
 		<servlet-class>advancedbeans.AdvancedbeansServlet</servlet-class>
 		<init-param>
-			<param-name> jdbcDriverName         </param-name>
-			<param-value> com.mysql.jdbc.Driver  </param-value>
-		</init-param>
-		<init-param>
-			<param-name> jdbcURL                </param-name>
-			<param-value> jdbc:mysql:///project     </param-value>
 		</init-param>
 	</servlet>
 	<servlet>
 		<servlet-name>AdvancedGoogleSQL</servlet-name>
 		<servlet-class>controller.Controller</servlet-class>
 		<init-param>
-			<param-name> jdbcDriverName         </param-name>
-			<param-value> com.mysql.jdbc.Driver  </param-value>
+			<param-name> jdbcDriverName </param-name>
+			<param-value> com.mysql.jdbc.Driver </param-value>
 		</init-param>
 		<init-param>
-			<param-name> jdbcURL                </param-name>
-			<param-value> jdbc:google:rdbms://gsqlbeanfactory:googlebeanfactorydb/ex1     </param-value>
+			<param-name> jdbcURL </param-name>
+			<param-value> jdbc:google:rdbms://gsqlbeanfactory:googlebeanfactorydb/ex1 </param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BasicGoogleSQL</servlet-name>
 		<url-pattern>/advancedbeans</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>AdvancedGoogleSQL</servlet-name>
 		<url-pattern>/mvccontroller</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>AdvancedGoogleSQL</servlet-name>
+        <url-pattern> *.do </url-pattern>
+    </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

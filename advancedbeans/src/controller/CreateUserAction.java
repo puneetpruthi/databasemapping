@@ -1,18 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
-
-import formbeans.*;
-import model.*;
-import databeans.*;
-
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
+import model.Model;
+import model.UserInfoDAO;
 
 import org.mybeans.dao.DAOException;
-import org.mybeans.forms.FormBeanFactory;
+
+import databeans.UserInfo;
 
 
 /*
@@ -27,7 +22,7 @@ import org.mybeans.forms.FormBeanFactory;
  * photos.
  */
 public class CreateUserAction extends Action {
-	private FormBeanFactory<CreateUserForm> formBeanFactory = FormBeanFactory.getInstance(CreateUserForm.class,"<>\"");
+//	private FormBeanFactory<CreateUserForm> formBeanFactory = FormBeanFactory.getInstance(CreateUserForm.class,"<>\"");
 
 	private UserInfoDAO userDAO;
 	
@@ -35,40 +30,56 @@ public class CreateUserAction extends Action {
 		userDAO = model.getUserInfoDAO();
 	}
 
-	public String getName() { return "CreateUserAction.do"; }
+	@Override
+	public String getName() { return "CreateUser.do"; }
 
-    public String perform(HttpServletRequest request) {
-    	//System.out.println("register.do called");
-    	
-    	CreateUserForm form = formBeanFactory.create(request);
-    	
-        // Set up the request attributes (the errors list and the form bean so
-        // we can just return to the jsp with the form if the request isn't correct)
+    @Override
+	public String perform(HttpServletRequest request) {
+//    	//System.out.println("register.do called");
+//    	
+//    	CreateUserForm form = formBeanFactory.create(request);
+//    	
+//        // Set up the request attributes (the errors list and the form bean so
+//        // we can just return to the jsp with the form if the request isn't correct)
         String errorMsg;
-        
-        request.setAttribute("form",form);
-
-        // If no params were passed, return with no errors so that the form will be
-        // presented (we assume for the first time).
-        if (!form.isPresent()) {
-        	//System.out.println("Form not present");
+//        
+//        request.setAttribute("form",form);
+//
+//        // If no params were passed, return with no errors so that the form will be
+//        // presented (we assume for the first time).
+//        if (!form.isPresent()) {
+//        	//System.out.println("Form not present");
+//            return "basic.jsp";
+//        }
+//
+//        // Any validation errors?
+//        errorMsg = form.getValidationErrors();
+//        if (errorMsg != null) {
+//        	request.setAttribute("errorMsg", errorMsg);
+//        	//System.out.println("Validation failed");
+//            return "basic.jsp";
+//        }
+    	String newName, newEmail, newPass;
+    	
+		if(request.getParameter("pname") != null){				
+			newName = request.getParameter("pname");
+			newEmail = request.getParameter("pemail");
+			newPass = request.getParameter("ppass");
+		}
+		else{
+        	request.setAttribute("errorMsg", "Invalid call to create user");
             return "basic.jsp";
-        }
-
-        // Any validation errors?
-        errorMsg = form.getValidationErrors();
-        if (errorMsg != null) {
-        	request.setAttribute("errorMsg", errorMsg);
-        	//System.out.println("Validation failed");
-            return "basic.jsp";
-        }
-        
+		}
+		
         // Create the user bean
-		UserInfo reqUser = new UserInfo(form.getPname(), form.getPemail(), form.getPpass());
+		UserInfo reqUser = new UserInfo();
+		reqUser.setName(newName);
+		reqUser.setPassword(newPass);
+		reqUser.setEmail(newEmail);
 
         try {
         	userDAO.create(reqUser);
-        	request.setAttribute("goodMsg", form.getPname() + "added successfully");
+        	request.setAttribute("goodMsg", "User " + newName + " added successfully");
         	return "basic.jsp";
         } catch (DAOException e) {
         	//System.out.println(e.getMessage());

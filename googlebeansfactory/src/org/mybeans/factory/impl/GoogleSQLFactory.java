@@ -369,7 +369,7 @@ public class GoogleSQLFactory<B> extends AbstractFactory<B> implements OutcomeLi
                 Column c = new Column();
                 c.name = rs.getString(1);
                 c.sqlType = rs.getString(2);
-                c.isNonNull = !rs.getBoolean(3);
+                c.isNonNull = ((rs.getString(3).equalsIgnoreCase("YES") == true)?false:true);
                 c.isPrimaryKey = rs.getString(4).equalsIgnoreCase("PRI");
                 pos++;
                 c.position = pos;
@@ -434,7 +434,7 @@ public class GoogleSQLFactory<B> extends AbstractFactory<B> implements OutcomeLi
                         } else if (prop instanceof ReferencedBeanProperty) {
                             if (column.isNonNull) throw new BeanFactoryException("Table="+tableName+", "+column.name+": database column does not allow nulls for this type (and should because it's part of a non-primary key bean reference)");
                         } else if (prop.getDefaultValue() == null && column.isNonNull) {
-                            throw new BeanFactoryException("Table="+tableName+", "+column.name+": database column does not allow nulls for this type (and should because of it's type: "+dbType+")");
+                            throw new BeanFactoryException("<Table="+tableName+", "+column.name+"V0.1 >: database column does not allow nulls for this type (and should because of it's type: "+dbType+")");
                         }
                     }
                 }

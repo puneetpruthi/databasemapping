@@ -1,18 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
-
-import formbeans.*;
-import model.*;
-import databeans.*;
-
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
+import model.Model;
+import model.UserInfoDAO;
 
 import org.mybeans.dao.DAOException;
-import org.mybeans.forms.FormBeanFactory;
+
+import databeans.UserInfo;
 
 
 /*
@@ -27,7 +22,7 @@ import org.mybeans.forms.FormBeanFactory;
  * photos.
  */
 public class DisplayUserAction extends Action {
-	private FormBeanFactory<DisplayUserForm> formBeanFactory = FormBeanFactory.getInstance(DisplayUserForm.class,"<>\"");
+//	private FormBeanFactory<DisplayUserForm> formBeanFactory = FormBeanFactory.getInstance(DisplayUserForm.class,"<>\"");
 
 	private UserInfoDAO userDAO;
 	
@@ -35,33 +30,35 @@ public class DisplayUserAction extends Action {
 		userDAO = model.getUserInfoDAO();
 	}
 
-	public String getName() { return "createUser.do"; }
+	@Override
+	public String getName() { return "DisplayUser.do"; }
 
-    public String perform(HttpServletRequest request) {
+    @Override
+	public String perform(HttpServletRequest request) {
     	//System.out.println("register.do called");
     	
-    	DisplayUserForm form = formBeanFactory.create(request);
-    	
-        // Set up the request attributes (the errors list and the form bean so
-        // we can just return to the jsp with the form if the request isn't correct)
+//    	DisplayUserForm form = formBeanFactory.create(request);
+//    	
+//        // Set up the request attributes (the errors list and the form bean so
+//        // we can just return to the jsp with the form if the request isn't correct)
         String errorMsg;
-        
-        request.setAttribute("form",form);
-
-        // If no params were passed, return with no errors so that the form will be
-        // presented (we assume for the first time).
-        if (!form.isPresent()) {
-        	//System.out.println("Form not present");
-            return "basic.jsp";
-        }
-
-        // Any validation errors?
-        errorMsg = form.getValidationErrors();
-        if (errorMsg != null) {
-        	request.setAttribute("errorMsg", errorMsg);
-        	//System.out.println("Validation failed");
-            return "basic.jsp";
-        }
+//        
+//        request.setAttribute("form",form);
+//
+//        // If no params were passed, return with no errors so that the form will be
+//        // presented (we assume for the first time).
+//        if (!form.isPresent()) {
+//        	//System.out.println("Form not present");
+//            return "basic.jsp";
+//        }
+//
+//        // Any validation errors?
+//        errorMsg = form.getValidationErrors();
+//        if (errorMsg != null) {
+//        	request.setAttribute("errorMsg", errorMsg);
+//        	//System.out.println("Validation failed");
+//            return "basic.jsp";
+//        }
         
 		UserInfo [] userlist;
 

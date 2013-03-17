@@ -2,8 +2,14 @@ package model;
 
 import java.io.Serializable;
 
-import org.mybeans.dao.*;
-import org.mybeans.factory.*;
+import org.mybeans.dao.DAOException;
+import org.mybeans.factory.BeanFactory;
+import org.mybeans.factory.BeanFactoryException;
+import org.mybeans.factory.BeanTable;
+import org.mybeans.factory.DuplicateKeyException;
+import org.mybeans.factory.MatchArg;
+import org.mybeans.factory.RollbackException;
+import org.mybeans.factory.Transaction;
 
 import databeans.UserInfo;
 
@@ -71,9 +77,9 @@ public class UserInfoDAO implements Serializable{
 			}
     	}
 		
-		protected BeanFactory<UserInfo> getFactory() throws DAOException{ 
-			return factory; 
-		}
+//		protected BeanFactory<UserInfo> getFactory() throws DAOException{ 
+//			return factory; 
+//		}
 		
 		public synchronized UserInfo searchName(String uname) throws DAOException{
 			UserInfo[] users;
