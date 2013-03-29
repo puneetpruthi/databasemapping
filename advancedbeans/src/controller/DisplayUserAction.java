@@ -2,11 +2,13 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.DatedUserDAO;
 import model.Model;
 import model.UserInfoDAO;
 
 import org.mybeans.dao.DAOException;
 
+import databeans.DatedUser;
 import databeans.UserInfo;
 
 
@@ -25,9 +27,11 @@ public class DisplayUserAction extends Action {
 //	private FormBeanFactory<DisplayUserForm> formBeanFactory = FormBeanFactory.getInstance(DisplayUserForm.class,"<>\"");
 
 	private UserInfoDAO userDAO;
+	private DatedUserDAO dateduserDAO;
 	
 	public DisplayUserAction(Model model) {
 		userDAO = model.getUserInfoDAO();
+		dateduserDAO = model.getDatedUserDAO();
 	}
 
 	@Override
@@ -61,10 +65,13 @@ public class DisplayUserAction extends Action {
 //        }
         
 		UserInfo [] userlist;
+		DatedUser [] dateduserlist;
 
         try {
         	userlist = userDAO.getUserList();
         	request.setAttribute("result", userlist);
+        	dateduserlist = dateduserDAO.getUserList();
+        	request.setAttribute("dresult", dateduserlist);
         	return "basic.jsp";
         } catch (DAOException e) {
         	//System.out.println(e.getMessage());

@@ -1,12 +1,16 @@
 package controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
+import model.DatedUserDAO;
 import model.Model;
 import model.UserInfoDAO;
 
 import org.mybeans.dao.DAOException;
 
+import databeans.DatedUser;
 import databeans.UserInfo;
 
 
@@ -25,9 +29,11 @@ public class CreateUserAction extends Action {
 //	private FormBeanFactory<CreateUserForm> formBeanFactory = FormBeanFactory.getInstance(CreateUserForm.class,"<>\"");
 
 	private UserInfoDAO userDAO;
+	private DatedUserDAO dateduserDAO;
 	
 	public CreateUserAction(Model model) {
 		userDAO = model.getUserInfoDAO();
+		dateduserDAO = model.getDatedUserDAO();
 	}
 
 	@Override
@@ -72,13 +78,15 @@ public class CreateUserAction extends Action {
 		}
 		
         // Create the user bean
-		UserInfo reqUser = new UserInfo();
+		DatedUser reqUser = new DatedUser();
+		java.util.Date now = new java.util.Date();
 		reqUser.setName(newName);
 		reqUser.setPassword(newPass);
 		reqUser.setEmail(newEmail);
+		reqUser.setEntrydate(now);
 
         try {
-        	userDAO.create(reqUser);
+        	dateduserDAO.create(reqUser);
         	request.setAttribute("goodMsg", "User " + newName + " added successfully");
         	return "basic.jsp";
         } catch (DAOException e) {

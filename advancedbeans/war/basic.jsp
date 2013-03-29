@@ -43,7 +43,7 @@
 
 	        	 <c:choose>  
 	       			<c:when test="${not empty result}">  
-	       				<br><a>Users in database</a>
+	       				<br><a>Users in database</a><br>
 	              	  <c:forEach items="${result}" var="item">
 						<a>Name: ${item.name} >>> Email : ${item.email} >>> Pass : ${item.password}</a><br>											
 					  </c:forEach> 
@@ -51,6 +51,15 @@
 	   	  		 </c:choose>  
 				<c:remove var="result"></c:remove> 
 
+	        	 <c:choose>  
+	       			<c:when test="${not empty dresult}">  
+	       				<br><a>Users in database</a><br>
+	              	  <c:forEach items="${dresult}" var="item">
+						<a>Name: ${item.name} >>> Email : ${item.email} >>> Pass : ${item.password}</a><br>											
+					  </c:forEach> 
+        			</c:when>  
+	   	  		 </c:choose>  
+				<c:remove var="result"></c:remove> 
 <%
 			if(goodMsg != null)
 			{
